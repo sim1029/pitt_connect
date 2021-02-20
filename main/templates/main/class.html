@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>{{ name }}</title>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="{% static 'arrow.png' %}" alt="" width="30px" class="d-inline-block align-top">
+        </a>
+        <div class="navbar-header mx-auto">
+          {{ name }}
+        </div>
+      </div>
+    </nav>
+
+    <div class="mx-auto mt-5" style="width: 50rem;">
+      <div class="accordion" id="accordionExample">
+
+        {% if zoom %}
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <img src="{% static 'ZoomIcon.png' %}" width="7%" alt="" style="margin-right: 1rem;"> Zoom
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>
+                  <strong>Lecture ({{ lecture }}): </strong> <a href="{{ lecture_link }}">{{ lecture_link }}</a>
+                  {% if lecture_pass %}
+                  <ul>
+                    <li><strong>Passcode: </strong> {{ lecture_pass }}</li>
+                  </ul>
+                  {% endif %}
+                  <br>
+                </li>
+                {% if recitation_link %}
+                <li>
+                  <strong>Recitation ({{ recitation }}): </strong> <a href="{{ recitation_link }}">{{ recitation_link }}</a>
+                  {% if recitation_pass %}
+                  <ul>
+                    <li><strong>Passcode: </strong> {{ recitation_pass }}</li>
+                  </ul>
+                  {% endif %}
+                  <br>
+                </li>
+                {% endif %}
+                {% if office_link %}
+                <li>
+                  <strong>Office Hours ({{ office }}): </strong> <a href="{{ office_link }}">{{ office_link }}</a>
+                  {% if office_pass %}
+                  <ul>
+                    <li><strong>Passcode: </strong> {{ office_pass }}</li>
+                  </ul>
+                  {% endif %}
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if discord %}
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <img src="{% static 'DiscordIcon.png' %}" width="7%" alt="" style="margin-right: 1rem;"> Discord
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Discord Channel: </strong> </strong> <a href="{{ discord_link }}">{{ discord_link }}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if groupme %}
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <img src="{% static 'GroupmeIcon.png' %}" width="7%" alt="" style="margin-right: 1rem;"> Group Me
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Group Me: </strong> </strong> <a href="{{ groupme_link }}">{{ groupme_link }}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if slack %}
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              <img src="{% static 'SlackIcon.png' %}" width="7%" alt="" style="margin-right: 1rem;"> Slack
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Slack Channel: </strong> </strong> <a href="{{ slack_link }}">{{ slack_link }}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if tophat %}
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              <img src="{% static 'TophatIcon.png' %}" width="7%" alt="" style="margin-right: 1rem;"> Top Hat
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Top Hat: </strong> </strong> <a href="{{ tophat_link }}">{{ tophat_link }}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if canvas %}
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              <img src="{% static 'canvasLogo.png' %}" width="7%" alt="" style="margin-right: 1rem;"> Canvas
+            </button>
+          </h2>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Canvas Page: </strong> </strong> <a href="{{ canvas_link }}">{{ canvas_link }}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if gradescope %}
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSeven">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+              <img src="{% static 'gradescopeLogo.png' %}" width="7%" alt="" style="margin-right: 1rem;"> Gradescope
+            </button>
+          </h2>
+          <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Gradescope: </strong> </strong> <a href="{{ gradescope_link }}">{{ gradescope_link }}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <div class="d-flex justify-content-center my-3"><button type="button" class="btn btn-primary" name="button" id="edit-btn">Edit Links</button></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+  </body>
+</html>
