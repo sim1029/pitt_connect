@@ -79,7 +79,7 @@ body {
 /* Modal Content/Box */
 .modal-content {
       background-color: #fefefe;
-        margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+        margin: 0% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
           border: 1px solid #888;
             width: 50%; /* Could be more or less, depending on screen size */
               border-radius: 2rem;
@@ -132,6 +132,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
 }
 
 a {
@@ -144,7 +145,7 @@ a {
     </head>
     <body>
       <div class="" style="display: flex; justify-content: flex-end;">
-        <a href="sign_up.html">Sign up</a>
+        <a href="login.html">login</a>
       </div>
       <div id="id01" class="modal">
         <form class="modal-content animate" action="index.html" method="post">
@@ -153,16 +154,22 @@ a {
             <img src="../../../Avatar.png" alt="Avatar" class="avatar" style="width: 15%;">
           </div>
           <div class="container">
+            <label for="uname"><b>Email</b></label>
+            <input type="text" placeholder="Enter Pitt Email" name="email" required>
+
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
 
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
 
+            <label for="psw"><b>Confirm Password</b></label>
+            <input type="password" placeholder="Confirm Password" name="confirmPass" required>
+
             </div>
             <div class="container1">
               <form class="d-flex" method="get" action="index.html">
-                  <button class="btn btn-outline-success" type="submit">Login</button>
+                  <button class="btn btn-outline-success" type="submit">Sign Up</button>
               </form>
             </div>
         </div>
