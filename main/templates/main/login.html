@@ -24,19 +24,13 @@ button {
             margin: 8px 0px;
               border: none;
                 cursor: pointer;
-<<<<<<< HEAD
                   width: 25%;
                     border-radius: 1rem;
 
-=======
-                  width: 100%;
+                  width: 25%;
 
 }
 
-.container{
-
->>>>>>> 101c22029650f3655592bb196141ad97728f7fd5
-}
 
 .center {
     text-align: center;
@@ -153,47 +147,30 @@ a {
 
     </head>
     <body>
-<<<<<<< HEAD
+      {% if error %}
+        <p>Your username and password didn't match. Please try again.</p>
+      {% endif %}
+
       <div class="" style="display: flex; justify-content: flex-end;">
         <a href="sign_up.html">Sign up</a>
       </div>
       <div id="id01" class="modal">
-        <form class="modal-content animate" action="index.html" method="post">
-          <h1 style="display: flex; justify-content: center;">Pitt Connect</h1>
-          <div class="imgcontainer">
-            <img src="../../../Avatar.png" alt="Avatar" class="avatar" style="width: 15%;">
-=======
-      {% if error %}
-      <p>Your username and password didn't match. Please try again.</p>
-      {% endif %}
-
-      <div id="id01" class="modal">
         <form class="modal-content animate" action="{% url 'login' %}" method="post">
-          {% csrf_token %}
+          {% csrf_token %}          <h1 style="display: flex; justify-content: center;">Pitt Connect</h1>
           <div class="imgcontainer">
-            <img src="{% static 'Avatar.png' %}" alt="Avatar" class="avatar">
->>>>>>> 101c22029650f3655592bb196141ad97728f7fd5
+            <img src="{% static 'Avatar.png' %}" alt="Avatar" class="avatar" style="width: 15%;">
           </div>
           <div class="container">
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
 
             <label for="psw"><b>Password</b></label>
-<<<<<<< HEAD
-            <input type="password" placeholder="Enter Password" name="psw" required>
-
-            </div>
-            <div class="container1">
-              <form class="d-flex" method="get" action="index.html">
-                  <button class="btn btn-outline-success" type="submit">Login</button>
-              </form>
-            </div>
-=======
             <input type="password" placeholder="Enter Password" name="password" required>
             </div>
-            <button class="btn btn-outline-success" type="submit">Login</button>
-            </form>
->>>>>>> 101c22029650f3655592bb196141ad97728f7fd5
+            <div class="container1">
+              <button class="btn btn-outline-success" type="submit">Login</button>
+            </div>
+          </form>
         </div>
 
 
