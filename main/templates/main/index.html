@@ -25,6 +25,11 @@
             </li>
           </ul>
         </div>
+        <ul class="navbar-nav mx-2">
+          <li class="nav-item">
+              <a class="nav-link active text-danger" aria-current="page" href="{% url 'index' %}">Logout</a>
+          </li>
+        </ul>
         <form class="d-flex" method="get" action="{% url 'search' %}">
           <input class="form-control me-2" type="search" placeholder="Course #" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
