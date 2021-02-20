@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -10,7 +11,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'search' %}">
-          <img src="arrow.png" alt="" width="30px" class="d-inline-block align-top">
+          <img src="{% static 'arrow.png' %}" alt="" width="30px" class="d-inline-block align-top">
         </a>
         <div class="navbar-header mx-auto">
           New Course
@@ -44,7 +45,7 @@
         </div>
         <div class="input-group mb-3">
           <label class="input-group-text text-danger" for="days">Lecture Days</label>
-          <select class="form-select" id="inputGroupSelect01" name="day1">
+          <select class="form-select" id="inputGroupSelect01" name="lecDay1">
             <option selected>Day 1</option>
             <option value="M">Monday</option>
             <option value="T">Tuesday</option>
@@ -52,7 +53,7 @@
             <option value="TH">Thursday</option>
             <option value="F">Friday</option>
           </select>
-          <select class="form-select" id="inputGroupSelect01" name="day2">
+          <select class="form-select" id="inputGroupSelect01" name="lecDay2">
             <option selected>Day 2 (optional)</option>
             <option value="M">Monday</option>
             <option value="T">Tuesday</option>
@@ -60,7 +61,7 @@
             <option value="TH">Thursday</option>
             <option value="F">Friday</option>
           </select>
-          <select class="form-select" id="inputGroupSelect01" name="day3">
+          <select class="form-select" id="inputGroupSelect01" name="lecDay3">
             <option selected>Day 3 (optional)</option>
             <option value="M">Monday</option>
             <option value="T">Tuesday</option>
@@ -75,11 +76,11 @@
           <span class="input-group-text text-danger" id="basic-addon3">Meeting Time (00:00 AM/PM)</span>
           <input type="text" aria-label="Time" class="form-control" name="lectureTime">
           <span class="input-group-text" id="basic-addon3">Password (optional)</span>
-          <input type="text" aria-label="Time" class="form-control" name="password">
+          <input type="text" aria-label="Time" class="form-control" name="lecPassword">
         </div>
         <div class="input-group mb-3">
-          <label class="input-group-text" for="days">Day 1</label>
-          <select class="form-select" id="inputGroupSelect01" name="recDay">
+          <label class="input-group-text" for="days">Recitation Days</label>
+          <select class="form-select" id="inputGroupSelect01" name="recDay1">
             <option selected>Select Day</option>
             <option value="M">Monday</option>
             <option value="T">Tuesday</option>
@@ -117,9 +118,9 @@
         </div>
         <div class="container1 input-group mb-3">
           <span class="input-group-text" id="basic-addon3">Zoom Office Hours Link</span>
-          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="officeLink">
           <span class="input-group-text" id="basic-addon3">Meeting Time (00:00 AM/PM)</span>
-          <input type="text" aria-label="Time" class="form-control" name="recitationTime">
+          <input type="text" aria-label="Time" class="form-control" name="officeTime">
           <span class="input-group-text" id="basic-addon3">Password (optional)</span>
           <input type="text" aria-label="Time" class="form-control" name="officePassword">
         </div>
@@ -137,7 +138,7 @@
         </div>
         <div class="container1 input-group mb-3">
           <span class="input-group-text" id="basic-addon3">Tophat Link</span>
-          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="topHatLink">
+          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="tophatLink">
         </div>
         <div class="container1 input-group mb-3">
           <span class="input-group-text" id="basic-addon3">Canvas Link</span>

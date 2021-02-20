@@ -1,3 +1,4 @@
+{% load static %}
 
 <html>
     <head>
@@ -24,11 +25,11 @@ button {
               border: none;
                 cursor: pointer;
                   width: 100%;
-                        
+
 }
 
 .container{
-    
+
 }
 
 .center {
@@ -38,7 +39,7 @@ button {
     left: 50%;
     -ms-transform: translateX(-50%);
     transform: translateX(-10%);
-    
+
 }
 
 button:hover {
@@ -148,22 +149,24 @@ The Modal (background)
 </style>
     </head>
     <body>
+      {% if error %}
+      <p>Your username and password didn't match. Please try again.</p>
+      {% endif %}
+
       <div id="id01" class="modal">
-        <form class="modal-content animate" action="index.html" method="post">
+        <form class="modal-content animate" action="{% url 'login' %}" method="post">
+          {% csrf_token %}
           <div class="imgcontainer">
-            <img src="Avatar.png" alt="Avatar" class="avatar">
+            <img src="{% static 'Avatar.png' %}" alt="Avatar" class="avatar">
           </div>
           <div class="container">
             <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <input type="text" placeholder="Enter Username" name="username" required>
 
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="password" placeholder="Enter Password" name="password" required>
             </div>
-            <form class="d-flex" method="get" action="index.html">
-                
-                <button class="btn btn-outline-success" type="submit">Login</button>
-                
+            <button class="btn btn-outline-success" type="submit">Login</button>
             </form>
         </div>
 

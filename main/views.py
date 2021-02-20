@@ -1,21 +1,157 @@
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login as auth_login
 
 from .models import Class
 
 # Create your views here.
 
 def index(request):
-    context = {
-        'classes' : Class.objects.all(),
-    }
-    return render(request, 'main/index.html', context)
+    if request.user.is_authenticated:
+        classes = []
+        for class_id in request.user.profile.classes.split(','):
+            classes.append(Class.objects.get(pk=int(class_id)))
+
+        context = {
+            'classes' : classes,
+        }
+        return render(request, 'main/index.html', context)
+    else:
+        context = {
+            'classes' : Class.objects.all(),
+        }
+        return render(request, 'main/index.html', context)
 
 def search(request):
     return render(request, 'main/class_search.html', {})
 
 def login(request):
-    return render(request, 'main/login.html', {})
+    if request.method == 'POST':
+        # user = User.objects.create_user(
+        #     request.POST['uname'],
+        #     email=None,
+        #     password=request.POST['psw'],
+        # )
+        #
+        # user.save()
+
+        user = authenticate(
+            username=request.POST['username'],
+            password=request.POST['password'],
+        )
+        if user is not None:
+            auth_login(request, user)
+            return redirect('index')
+        else:
+            context = {
+                'errors' : True,
+            }
+            return render(request, 'main/login.html', context)
+    else:
+        context = {
+            'errors' : False,
+        }
+        return render(request, 'main/login.html', context)
+
+def create(request):
+    if request.method == 'POST':
+        department = ""
+        code = ""
+
+        cnum = request.POST['courseNum']
+        while cnum != "":
+            if cnum.isdigit():
+                code = cnum
+                break
+            else:
+                department += cnum[0]
+                cnum = cnum[1:]
+
+        name = request.POST['courseName']
+        instructor = "{0} {1}".format(request.POST['firstName'], request.POST['lastName'])
+
+        [term, year] = request.POST['term'].split(" ")
+        if term == "Spring":
+            term = "SP"
+        elif term == "Summer":
+            term = "SM"
+        else:
+            term = "FL"
+
+        lecday1 = request.POST['lecDay1']
+        lecday2 = request.POST['lecDay2']
+        lecday3 = request.POST['lecDay3']
+        lecture_days = "{0}{1}{2}".format(
+            lecday1 if not lecday1.startswith('Day') else "",
+            lecday2 if not lecday2.startswith('Day') else "",
+            lecday3 if not lecday3.startswith('Day') else "",
+        )
+
+        recday1 = request.POST['recDay1']
+        recday2 = request.POST['recDay2']
+        recitation_days = "{0}{1}".format(
+            recday1 if not recday1.startswith('Day') else "",
+            recday2 if not recday2.startswith('Day') else "",
+        )
+
+        office_days = request.POST['officeDay']
+
+        lecture_time = request.POST['lectureTime']
+        recitation_time = request.POST['recitationTime']
+        office_time = request.POST['officeTime']
+
+        lecture_link = request.POST['lectureLink']
+        recitation_link = request.POST['recitationLink']
+        office_link = request.POST['officeLink']
+
+        lecture_pass = request.POST['lecPassword']
+        recitation_pass = request.POST['recPassword']
+        office_pass = request.POST['officePassword']
+
+        zoom = "{0},{1};{2},{3};{4},{5}".format(
+            lecture_link,
+            lecture_pass,
+            recitation_link,
+            recitation_pass,
+            office_link,
+            office_pass
+        )
+
+        discord = request.POST['discordLink']
+        groupme = request.POST['groupmeLink']
+        slack = request.POST['slackLink']
+        tophat = request.POST['tophatLink']
+        canvas = request.POST['canvasLink']
+        gradescope = request.POST['gradescopeLink']
+
+        new_class = Class(
+            department=department,
+            code=code,
+            name=name,
+            instructor=instructor,
+            term=term,
+            year=year,
+            lecture_days=lecture_days,
+            lecture_time=lecture_time,
+            recitation_days=recitation_days,
+            recitation_time=recitation_time,
+            office_days=office_days,
+            office_time=office_time,
+            zoom=zoom,
+            discord=discord,
+            slack=slack,
+            groupme=groupme,
+            tophat=tophat,
+            canvas=canvas,
+            gradescope=gradescope,
+        )
+
+        new_class.save()
+
+        return redirect('index')
+    else:
+        return render(request, 'main/class_form.html', {})
 
 def class_page(request, class_id):
     c = get_object_or_404(Class, pk=class_id)
