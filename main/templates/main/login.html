@@ -1,3 +1,4 @@
+{% load static %}
 
 <html>
     <head>
@@ -23,9 +24,18 @@ button {
             margin: 8px 0px;
               border: none;
                 cursor: pointer;
+<<<<<<< HEAD
                   width: 25%;
                     border-radius: 1rem;
 
+=======
+                  width: 100%;
+
+}
+
+.container{
+
+>>>>>>> 101c22029650f3655592bb196141ad97728f7fd5
 }
 
 .center {
@@ -143,6 +153,7 @@ a {
 
     </head>
     <body>
+<<<<<<< HEAD
       <div class="" style="display: flex; justify-content: flex-end;">
         <a href="sign_up.html">Sign up</a>
       </div>
@@ -151,12 +162,24 @@ a {
           <h1 style="display: flex; justify-content: center;">Pitt Connect</h1>
           <div class="imgcontainer">
             <img src="../../../Avatar.png" alt="Avatar" class="avatar" style="width: 15%;">
+=======
+      {% if error %}
+      <p>Your username and password didn't match. Please try again.</p>
+      {% endif %}
+
+      <div id="id01" class="modal">
+        <form class="modal-content animate" action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+          <div class="imgcontainer">
+            <img src="{% static 'Avatar.png' %}" alt="Avatar" class="avatar">
+>>>>>>> 101c22029650f3655592bb196141ad97728f7fd5
           </div>
           <div class="container">
             <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <input type="text" placeholder="Enter Username" name="username" required>
 
             <label for="psw"><b>Password</b></label>
+<<<<<<< HEAD
             <input type="password" placeholder="Enter Password" name="psw" required>
 
             </div>
@@ -165,6 +188,12 @@ a {
                   <button class="btn btn-outline-success" type="submit">Login</button>
               </form>
             </div>
+=======
+            <input type="password" placeholder="Enter Password" name="password" required>
+            </div>
+            <button class="btn btn-outline-success" type="submit">Login</button>
+            </form>
+>>>>>>> 101c22029650f3655592bb196141ad97728f7fd5
         </div>
 
 
