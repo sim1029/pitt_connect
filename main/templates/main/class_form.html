@@ -38,9 +38,30 @@
           <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="courseNum">
         </div>
         <div class="input-group mb-3">
-          <label class="input-group-text text-danger" for="days">Class Days</label>
-          <select class="form-select" id="inputGroupSelect01" name="days">
-            <option selected>Choose...</option>
+          <span class="input-group-text text-danger">Instructor</span>
+          <input type="text" aria-label="First name" placeholder="FirstName" class="form-control" name="firstName">
+          <input type="text" aria-label="Last name" placeholder="LastName" class="form-control" name="lastName">
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text text-danger" for="days">Lecture Days</label>
+          <select class="form-select" id="inputGroupSelect01" name="day1">
+            <option selected>Day 1</option>
+            <option value="M">Monday</option>
+            <option value="T">Tuesday</option>
+            <option value="W">Wednesday</option>
+            <option value="TH">Thursday</option>
+            <option value="F">Friday</option>
+          </select>
+          <select class="form-select" id="inputGroupSelect01" name="day2">
+            <option selected>Day 2 (optional)</option>
+            <option value="M">Monday</option>
+            <option value="T">Tuesday</option>
+            <option value="W">Wednesday</option>
+            <option value="TH">Thursday</option>
+            <option value="F">Friday</option>
+          </select>
+          <select class="form-select" id="inputGroupSelect01" name="day3">
+            <option selected>Day 3 (optional)</option>
             <option value="M">Monday</option>
             <option value="T">Tuesday</option>
             <option value="W">Wednesday</option>
@@ -48,28 +69,59 @@
             <option value="F">Friday</option>
           </select>
         </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text text-danger">Instructor</span>
-          <input type="text" aria-label="First name" placeholder="FirstName" class="form-control" name="firstName">
-          <input type="text" aria-label="Last name" placeholder="LastName" class="form-control" name="lastName">
-        </div>
         <div class="container1 input-group mb-3">
           <span class="input-group-text text-danger" id="basic-addon3">Zoom Lecture Link</span>
           <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="lectureLink">
           <span class="input-group-text text-danger" id="basic-addon3">Meeting Time (00:00 AM/PM)</span>
           <input type="text" aria-label="Time" class="form-control" name="lectureTime">
+          <span class="input-group-text" id="basic-addon3">Password (optional)</span>
+          <input type="text" aria-label="Time" class="form-control" name="password">
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="days">Day 1</label>
+          <select class="form-select" id="inputGroupSelect01" name="recDay">
+            <option selected>Select Day</option>
+            <option value="M">Monday</option>
+            <option value="T">Tuesday</option>
+            <option value="W">Wednesday</option>
+            <option value="TH">Thursday</option>
+            <option value="F">Friday</option>
+          </select>
+          <select class="form-select" id="inputGroupSelect01" name="recDay2">
+            <option selected>Day 2 (optional)</option>
+            <option value="M">Monday</option>
+            <option value="T">Tuesday</option>
+            <option value="W">Wednesday</option>
+            <option value="TH">Thursday</option>
+            <option value="F">Friday</option>
+          </select>
         </div>
         <div class="container1 input-group mb-3">
           <span class="input-group-text " id="basic-addon3">Zoom Recitation Link</span>
           <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="recitationLink">
           <span class="input-group-text" id="basic-addon3">Meeting Time (00:00 AM/PM)</span>
           <input type="text" aria-label="Time" class="form-control" name="recitationTime">
+          <span class="input-group-text" id="basic-addon3">Password (optional)</span>
+          <input type="text" aria-label="Time" class="form-control" name="recPassword">
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="days">Office Hours Day</label>
+          <select class="form-select" id="inputGroupSelect01" name="officeDay">
+            <option selected>Select Day</option>
+            <option value="M">Monday</option>
+            <option value="T">Tuesday</option>
+            <option value="W">Wednesday</option>
+            <option value="TH">Thursday</option>
+            <option value="F">Friday</option>
+          </select>
         </div>
         <div class="container1 input-group mb-3">
           <span class="input-group-text" id="basic-addon3">Zoom Office Hours Link</span>
           <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
           <span class="input-group-text" id="basic-addon3">Meeting Time (00:00 AM/PM)</span>
           <input type="text" aria-label="Time" class="form-control" name="recitationTime">
+          <span class="input-group-text" id="basic-addon3">Password (optional)</span>
+          <input type="text" aria-label="Time" class="form-control" name="officePassword">
         </div>
         <div class="container1 input-group mb-3">
           <span class="input-group-text" id="basic-addon3">Discord Link</span>
