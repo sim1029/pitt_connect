@@ -25,7 +25,7 @@
             </li>
           </ul>
         </div>
-        <form class="d-flex" method="get" action="class_search.html">
+        <form class="d-flex" method="get" action="{% url 'search' %}">
           <input class="form-control me-2" type="search" placeholder="Course #" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
@@ -34,11 +34,9 @@
 
     <!-- Cards -->
     <div class="mx-auto my-5" style="width: 75rem;">
-      {% for class in classes %}
-      {% ifequal forloop.counter0|divisibleby:"3" True %}
       <div class="row row-cols-1 row-cols-md-3 g-4">
-      {% endifequal %}
-          <a href="{% url 'class_page' class.id %}" class="remove-style">
+        {% for class in classes %}
+        <a href="{% url 'class_page' class.id %}" class="remove-style">
           <div class="col">
             <div class="card">
               {% ifequal forloop.counter0|divisibleby:"2" True %}
@@ -54,12 +52,8 @@
             </div>
           </div>
         </a>
-      {% endfor %}
-      {% for class in classes %}
-      {% ifequal forloop.counter0|divisibleby:"3" True %}
+        {% endfor %}
       </div>
-      {% endifequal %}
-      {% endfor %}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
