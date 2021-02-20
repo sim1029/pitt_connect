@@ -6,7 +6,16 @@ from .models import Class
 # Create your views here.
 
 def index(request):
-    return render(request, 'main/index.html', {})
+    context = {
+        'classes' : Class.objects.all(),
+    }
+    return render(request, 'main/index.html', context)
+
+def search(request):
+    return render(request, 'main/class_search.html', {})
+
+def login(request):
+    return render(request, 'main/login.html', {})
 
 def class_page(request, class_id):
     c = get_object_or_404(Class, pk=class_id)
