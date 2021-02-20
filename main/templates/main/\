@@ -19,26 +19,23 @@ input[type=text], input[type=password] {
 button {
       background-color: #4CAF50;
         color: white;
-          padding: 14px 10px;
+          padding: 14px 20px;
             margin: 8px 0px;
               border: none;
                 cursor: pointer;
-                  width: 100%;
-                        
+                  width: 80%;
 }
 
-.container{
-    
+.btncontainer {
+        text-align: center;
+        position: relative;
 }
 
 .center {
-    text-align: center;
     margin: 0;
     position: absolute;
+    top: 50%;
     left: 50%;
-    -ms-transform: translateX(-50%);
-    transform: translateX(-10%);
-    
 }
 
 button:hover {
@@ -151,6 +148,7 @@ The Modal (background)
       <div id="id01" class="modal">
         <form class="modal-content animate" action="index.html" method="post">
           <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
             <img src="Avatar.png" alt="Avatar" class="avatar">
           </div>
           <div class="container">
@@ -161,9 +159,7 @@ The Modal (background)
             <input type="password" placeholder="Enter Password" name="psw" required>
             </div>
             <form class="d-flex" method="get" action="index.html">
-                
-                <button class="btn btn-outline-success" type="submit">Login</button>
-                
+              <button class="btn btn-outline-success" type="submit">Login</button>
             </form>
         </div>
 
