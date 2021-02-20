@@ -1,3 +1,4 @@
+{% load static %}
 
 <html>
     <head>
@@ -145,36 +146,35 @@ a {
     </head>
     <body>
       <div class="" style="display: flex; justify-content: flex-end;">
-        <a href="login.html">login</a>
+        <a href="{% url 'login' %}">login</a>
       </div>
       <div id="id01" class="modal">
-        <form class="modal-content animate" action="index.html" method="post">
+        {% if error %}
+          <p>There was an error signing up. Make sure that your passwords match, or
+          try a different username or email.</p>
+        {% endif %}
+        <form class="modal-content animate" action="{% url 'signup' %}" method="post">
           <h1 style="display: flex; justify-content: center;">Pitt Connect</h1>
           <div class="imgcontainer">
-            <img src="../../../Avatar.png" alt="Avatar" class="avatar" style="width: 15%;">
+            <img src="{% static 'Avatar.png' %}" alt="Avatar" class="avatar" style="width: 15%;">
           </div>
           <div class="container">
             <label for="uname"><b>Email</b></label>
             <input type="text" placeholder="Enter Pitt Email" name="email" required>
 
             <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <input type="text" placeholder="Enter Username" name="username" required>
 
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="password" placeholder="Enter Password" name="password" required>
 
             <label for="psw"><b>Confirm Password</b></label>
-            <input type="password" placeholder="Confirm Password" name="confirmPass" required>
+            <input type="password" placeholder="Confirm Password" name="passwordConfirm" required>
 
             </div>
             <div class="container1">
-              <form class="d-flex" method="get" action="index.html">
                   <button class="btn btn-outline-success" type="submit">Sign Up</button>
-              </form>
             </div>
         </div>
-
-
-
     </body>
 </html>

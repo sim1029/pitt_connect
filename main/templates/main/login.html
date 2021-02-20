@@ -147,14 +147,13 @@ a {
 
     </head>
     <body>
-      {% if error %}
-        <p>Your username and password didn't match. Please try again.</p>
-      {% endif %}
-
       <div class="" style="display: flex; justify-content: flex-end;">
         <a href="sign_up.html">Sign up</a>
       </div>
       <div id="id01" class="modal">
+        {% if error %}
+          <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
         <form class="modal-content animate" action="{% url 'login' %}" method="post">
           {% csrf_token %}          <h1 style="display: flex; justify-content: center;">Pitt Connect</h1>
           <div class="imgcontainer">
@@ -172,8 +171,5 @@ a {
             </div>
           </form>
         </div>
-
-
-
     </body>
 </html>

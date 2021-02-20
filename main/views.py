@@ -27,6 +27,10 @@ def search(request):
     return render(request, 'main/class_search.html', {})
 
 def login(request):
+    # if user is logged in already, redirect them
+    if request.user.is_authenticated:
+            return redirect('index')
+
     if request.method == 'POST':
         # user = User.objects.create_user(
         #     request.POST['uname'],
@@ -53,6 +57,34 @@ def login(request):
             'errors' : False,
         }
         return render(request, 'main/login.html', context)
+
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+
+    if request.method == 'POST':
+        if request.POST['password'] != request.POST['passwordConfirm']:
+            context = { 'error' : "Passwords do not match." }
+            return render(request, 'main/sign_up.html', context)
+        elif User.objects.filter(username=request.POST['username']).exists():
+            context = { 'error' : "Username already taken." }
+            return render(request, 'main/sign_up.html', context)
+        elif User.objects.filter(email=request.POST['email']).exists():
+            context = { 'error' : "Email already taken." }
+            return render(request, 'main/sign_up.html', context)
+        else:
+            user = User.objects.create_user(
+                request.POST['username'],
+                email=request.POST['email'],
+                password=request.POST['password'],
+            )
+
+            user.save()
+
+            return redirect('login')
+    else:
+        context = { 'error' : "" }
+        return render(request, 'main/sign_up.html', context)
 
 def create(request):
     if request.method == 'POST':
