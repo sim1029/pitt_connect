@@ -15,11 +15,14 @@
         <div class="navbar-header mx-auto">
           Results (#)
         </div>
+        <form class="d-flex" method="get" action="class_search.html">
+          <input class="form-control me-2" type="search" placeholder="Course #" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <form class="d-flex" action="class_form.html" method="get">
+          <button type="submit" class="btn btn-primary mx-2" name="button">Create Course</button>
+        </form>
       </div>
-      <form class="d-flex" method="get" action="class_search.html">
-        <input class="form-control me-2" type="search" placeholder="Course #" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </nav>
 
     <div class="container">
@@ -60,7 +63,7 @@
             <td><button type="button" name="button" class="btn btn-outline-primary ">Add Course</button></td>
           </tr>
         </tbody>
-      </table>`
+      </table>
     </div>
 
 
