@@ -16,6 +16,11 @@ input[type=text], input[type=password] {
                 box-sizing: border-box;
 }
 
+p {
+    padding: 12px 40px;
+    margin: 8px 0;
+}
+
 /* Set a style for all buttons */
 button {
       background-color: #4CAF50;
@@ -148,18 +153,18 @@ a {
     </head>
     <body>
       <div class="" style="display: flex; justify-content: flex-end;">
-        <a href="sign_up.html">Sign up</a>
+          <a href="{% url 'signup' %}">Sign up</a>
       </div>
       <div id="id01" class="modal">
-        {% if error %}
-          <p>Your username and password didn't match. Please try again.</p>
-        {% endif %}
         <form class="modal-content animate" action="{% url 'login' %}" method="post">
           {% csrf_token %}
           <h1 style="display: flex; justify-content: center;">Pitt Connect</h1>
           <div class="imgcontainer">
             <img src="{% static 'Avatar.png' %}" alt="Avatar" class="avatar" style="width: 15%;">
           </div>
+          {% if error %}
+            <p style="color: red">Your username and password didn't match. Please try again.</p>
+          {% endif %}
           <div class="container">
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>

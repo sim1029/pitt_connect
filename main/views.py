@@ -11,7 +11,8 @@ def index(request):
     if request.user.is_authenticated:
         classes = []
         for class_id in request.user.profile.classes.split(','):
-            classes.append(Class.objects.get(pk=int(class_id)))
+            if class_id:
+                classes.append(Class.objects.get(pk=int(class_id)))
 
         context = { 'classes' : classes }
         return render(request, 'main/index.html', context)
@@ -44,7 +45,7 @@ def search(request):
             classes = Class.objects.filter(department=department)
 
         if classes and code:
-            classes = classes.objects.filter(code=code)
+            classes = classes.filter(code=code)
         elif code:
             classes = Class.objects.filter(code=code)
 
@@ -63,7 +64,7 @@ def add(request, class_id):
     if request.user.is_authenticated:
         classes = request.user.profile.classes
         # don't duplicate a class in the user
-        if not classes.contains(str(class_id)):
+        if str(class_id) not in classes:
             classes += ',' + str(class_id)
 
             request.user.profile.classes = classes
@@ -74,8 +75,29 @@ def add(request, class_id):
     else:
         return redirect('login')
 
+def remove(request, class_id):
+    if request.user.is_authenticated:
+        classes = request.user.profile.classes
+        # don't duplicate a class in the user
+        if str(class_id) in classes:
+            # remove class
+            new_classes = ""
+            for c in classes.split(','):
+                if c != str(class_id):
+                    new_classes += c + ','
+                # cut off trailing comma
+
+            new_classes = new_classes[:-1]
+            request.user.profile.classes = new_classes
+            request.user.save()
+
+        n = request.POST.get('next', '/')
+        return redirect(n)
+    else:
+        return redirect('login')
+
 def logout(request):
-    logout(request)
+    auth_logout(request)
 
     return redirect('index')
 
