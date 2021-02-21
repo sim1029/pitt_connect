@@ -43,9 +43,9 @@
           <div class="col-12 col-md-6 col-lg-4 align-items-stretch">
             <div class="card">
               {% ifequal forloop.counter0|divisibleby:"2" True %}
-              <img src="{% static '100w/blueSquare.png' %}" class="card-img-top" alt="...">
+              <img src="{% static 'blueRec2.png' %}" class="card-img-top" alt="...">
               {% else %}
-              <img src="{% static '100w/yellowSquare.png' %}" class="card-img-top" alt="...">
+              <img src="{% static 'yellowRec2.png' %}" class="card-img-top" alt="...">
               {% endifequal %}
               <div class="card-body">
                 <a href="{% url 'class_page' class.id %}" class="remove-style">
