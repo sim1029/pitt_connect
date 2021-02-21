@@ -155,7 +155,8 @@ a {
           <p>Your username and password didn't match. Please try again.</p>
         {% endif %}
         <form class="modal-content animate" action="{% url 'login' %}" method="post">
-          {% csrf_token %}          <h1 style="display: flex; justify-content: center;">Pitt Connect</h1>
+          {% csrf_token %}
+          <h1 style="display: flex; justify-content: center;">Pitt Connect</h1>
           <div class="imgcontainer">
             <img src="{% static 'Avatar.png' %}" alt="Avatar" class="avatar" style="width: 15%;">
           </div>

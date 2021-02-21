@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
 from .models import Class
 
@@ -13,18 +13,72 @@ def index(request):
         for class_id in request.user.profile.classes.split(','):
             classes.append(Class.objects.get(pk=int(class_id)))
 
-        context = {
-            'classes' : classes,
-        }
+        context = { 'classes' : classes }
         return render(request, 'main/index.html', context)
     else:
-        context = {
-            'classes' : Class.objects.all(),
-        }
+        context = { 'classes' : Class.objects.all() }
         return render(request, 'main/index.html', context)
 
 def search(request):
-    return render(request, 'main/class_search.html', {})
+    if request.method == "POST":
+        # empty search
+        if not request.POST['search']:
+            context = { 'classes' : Class.objects.all(), 'error' : "Empty search." }
+            return render(request, 'main/class_search.html', context)
+
+        department = ""
+        code = ""
+
+        cnum = request.POST['search']
+        while cnum != "":
+            if cnum.isdigit():
+                code = cnum.strip()
+                break
+            elif cnum.isspace():
+                continue
+            else:
+                department += cnum[0]
+                cnum = cnum[1:]
+
+        classes = None
+        if department:
+            classes = Class.objects.filter(department=department)
+
+        if classes and code:
+            classes = classes.objects.filter(code=code)
+        elif code:
+            classes = Class.objects.filter(code=code)
+
+        if classes:
+            context = { 'classes': classes, 'error': "" }
+            return render(request, 'main/class_search.html', context)
+        else:
+            context = { 'classes' : Class.objects.all(), 'error' : "No results found." }
+            return render(request, 'main/class_search.html', context)
+
+    else:
+        context = { 'classes' : Class.objects.all(), 'error': "" }
+        return render(request, 'main/class_search.html', context)
+
+def add(request, class_id):
+    if request.user.is_authenticated:
+        classes = request.user.profile.classes
+        # don't duplicate a class in the user
+        if not classes.contains(str(class_id)):
+            classes += ',' + str(class_id)
+
+            request.user.profile.classes = classes
+            request.user.save()
+
+        n = request.POST.get('next', '/')
+        return redirect(n)
+    else:
+        return redirect('login')
+
+def logout(request):
+    logout(request)
+
+    return redirect('index')
 
 def login(request):
     # if user is logged in already, redirect them

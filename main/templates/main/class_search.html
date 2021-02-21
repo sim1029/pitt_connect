@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -7,23 +9,28 @@
   </head>
   <body>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-lighAdd Course px-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">
-          <img src="arrow.png" alt="" width="30px" class="d-inline-block align-top">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <img src="{% static 'arrow.png' %}" alt="" width="30px" class="d-inline-block align-top">
         </a>
         <div class="navbar-header mx-auto">
           Results (#)
         </div>
-        <form class="d-flex" method="get" action="class_search.html">
-          <input class="form-control me-2" type="search" placeholder="Course #" aria-label="Search">
+        <form class="d-flex" method="post" action="{% url 'search' %}">
+          {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Course #" aria-label="Search" name="search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-        <form class="d-flex" action="class_form.html" method="get">
+        <form class="d-flex" action="{% url 'create' %}" method="get">
           <button type="submit" class="btn btn-primary mx-2" name="button">Create Course</button>
         </form>
       </div>
     </nav>
+
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
 
     <div class="container">
       <table class="table">
@@ -33,35 +40,26 @@
             <th scope="col">Course Number</th>
             <th scope="col">Instructor</th>
             <th scope="col">Time</th>
-            <th scope="col">Section</th>
+            <!-- <th scope="col">Section</th> -->
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
+          {% for class in classes %}
           <tr>
             <th scope="row">1</th>
-            <td>CS 0449</td>
-            <td>Vicinus Pettruci</td>
-            <td>M W 1:15-2:30</td>
-            <td>123456</td>
-            <td><button type="button" name="button" class="btn btn-outline-primary ">Add Course</button></td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>CS 0449</td>
-            <td>Vicinus Pettruci</td>
-            <td>M W 1:15-2:30</td>
-            <td>123456</td>
-            <td><button type="button" name="button" class="btn btn-outline-primary ">Add Course</button></td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>CS 0449</td>
-            <td>Vicinus Pettruci</td>
-            <td>M W 1:15-2:30</td>
-            <td>123456</td>
-            <td><button type="button" name="button" class="btn btn-outline-primary ">Add Course</button></td>
-          </tr>
+            <td>{{ class.department }} {{ class.code }}</td>
+            <td>{{ class.instructor }}</td>
+            <td>{{ class.lecture_days }} {{ class.lecture_time }}</td>
+            <!-- <td>123456</td> -->
+            <td>
+              <form class="d-flex" method="post" action="{% url 'add' class.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button type="submit" name="button" class="btn btn-outline-primary ">Add Course</button>
+              </form>
+            </td>
+          {% endfor %}
         </tbody>
       </table>
     </div>
