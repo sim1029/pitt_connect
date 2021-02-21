@@ -1,3 +1,18 @@
-# pitt_connect
-Steelhacks 2021 project
-[TRELLO LINK](https://trello.com/invite/b/WKyaZnzn/74374c842c6d809e4d9decaee48a58b3/project-workflow)
+# Pitt Connect
+**A SteelHacks 2021 project.**
+
+Pitt Connect serves as a hub for the various platforms utilized in online learning. Users can access and modify a personalized home screen that helps them find information about their classes.
+
+Try it at the [Pitt Connect Website](https://wise-isotope-305503.ue.r.appspot.com/)!
+
+Home Screen
+![](web1.png)
+
+Example of a Class
+![](web2.png)
+
+Class Search
+![](web3.png)
+
+Login Screen
+![](web4.png)
