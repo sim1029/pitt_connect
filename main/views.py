@@ -16,8 +16,7 @@ def index(request):
         context = { 'classes' : classes }
         return render(request, 'main/index.html', context)
     else:
-        context = { 'classes' : Class.objects.all() }
-        return render(request, 'main/index.html', context)
+        return render(request, 'main/welcome.html', {})
 
 def search(request):
     if request.method == "POST":
