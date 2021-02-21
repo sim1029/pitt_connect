@@ -15,34 +15,32 @@
         <a class="navbar-brand" href="#">
             <img src="{% static 'pLogo.png' %}" alt="" width="30px" class="d-inline-block align-top">
         </a>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Pitt-Connect</a>
+          </li>
+        </ul>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Pitt-Connect</a>
+                <a class="nav-link link-danger" aria-current="page" href="{% url 'index' %}" style="color: #dc3545;">Logout</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link link-primary" style="color: #0d6efd;">Find Courses</a>
             </li>
           </ul>
         </div>
-        <ul class="navbar-nav mx-2">
-          <li class="nav-item">
-              <a class="nav-link active text-danger" aria-current="page" href="{% url 'index' %}">Logout</a>
-          </li>
-        </ul>
-        <form class="d-flex" method="get" action="{% url 'search' %}">
-          <input class="form-control me-2" type="search" placeholder="Course #" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
       </div>
     </nav>
 
     <!-- Cards -->
-    <div class="mx-auto my-5" style="width: 75rem;">
-      <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="container mx-auto my-5">
+      <div class="row g-4">
         {% for class in classes %}
-        <a href="{% url 'class_page' class.id %}" class="remove-style">
-          <div class="col">
+          <div class="col-12 col-md-6 col-lg-4 align-items-stretch">
             <div class="card">
               {% ifequal forloop.counter0|divisibleby:"2" True %}
               <img src="{% static '100w/blueSquare.png' %}" class="card-img-top" alt="...">
@@ -50,17 +48,22 @@
               <img src="{% static '100w/yellowSquare.png' %}" class="card-img-top" alt="...">
               {% endifequal %}
               <div class="card-body">
+                <a href="{% url 'class_page' class.id %}" class="remove-style">
                   <h5 class="card-title">{{ class.department }} {{ class.code }}</h5>
                 <h5 class="card-title">{{ class.name }}</h5>
-                <p class="card-text">{{ class.instructor }}</p>
+                <p class="card-text">
+                  {{ class.instructor }}
+                </p>
+                </a>
+                <div class="d-flex justify-content-end my-2"><a href="#" class="btn btn-outline-danger stretched-link remove-btn" style="display: none">Remove</a></div>
               </div>
             </div>
           </div>
-        </a>
         {% endfor %}
       </div>
+      <div class="d-flex justify-content-center my-3"><button type="button" class="btn btn-primary" name="button" id="edit-btn">Edit Courses</button></div>
     </div>
-
+    <script type="" src="{% static 'js/index.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
   </body>
