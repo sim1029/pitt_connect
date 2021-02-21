@@ -326,6 +326,18 @@ def class_page(request, class_id):
         gradescope = True
         gradescope_link = c.gradescope
 
+    box = False
+    box_link = ""
+    if c.box:
+        box = True
+        box_link = c.box
+
+    website = False
+    website_link = ""
+    if c.website:
+        website = True
+        website_link = c.website
+
     context = {
         'name' : name,
         'zoom' : zoom,
@@ -350,6 +362,10 @@ def class_page(request, class_id):
         'canvas_link' : canvas_link,
         'gradescope' : gradescope,
         'gradescope_link' : gradescope_link,
+        'box' : box,
+        'box_link' : box_link,
+        'website' : website,
+        'website_link' : website_link,
     }
 
     return render(request, 'main/class.html', context)

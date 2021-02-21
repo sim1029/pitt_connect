@@ -61,6 +61,8 @@ class Class(models.Model):
     tophat = models.CharField(max_length=300,blank=True)
     canvas = models.CharField(max_length=300,blank=True)
     gradescope = models.CharField(max_length=300,blank=True)
+    box = models.CharField(max_length=300,blank=True)
+    website = models.CharField(max_length=300,blank=True)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
