@@ -56,7 +56,7 @@
             <td>{{ class.lecture_days }} {{ class.lecture_time }}</td>
             <!-- <td>123456</td> -->
             <td>
-              {% if user.is_authenticated and class.id|stringformat:"i" in user.profile.classes %}
+              {% if class.id in user_classes %}
               <form class="d-flex" method="post" action="{% url 'remove' class.id %}">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ request.path }}">

@@ -20,10 +20,24 @@ def index(request):
         return render(request, 'app/welcome.html', {})
 
 def search(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    user_classes = []
+    for i in request.user.profile.classes.split(','):
+        if i:
+            user_classes.append(int(i))
+    print(user_classes)
+
     if request.method == "POST":
         # empty search
+
         if not request.POST['search']:
-            context = { 'classes' : Class.objects.all(), 'error' : "Empty search." }
+            context = {
+                'classes': Class.objects.all(),
+                'user_classes': user_classes,
+                'error': "Empty search."
+            }
             return render(request, 'app/class_search.html', context)
 
         department = ""
@@ -50,14 +64,26 @@ def search(request):
             classes = Class.objects.filter(code=code)
 
         if classes:
-            context = { 'classes': classes, 'error': "" }
+            context = {
+                'classes': classes,
+                'user_classes': user_classes,
+                'error': ""
+            }
             return render(request, 'app/class_search.html', context)
         else:
-            context = { 'classes' : Class.objects.all(), 'error' : "No results found." }
+            context = {
+                'classes': Class.objects.all(),
+                'user_classes': user_classes,
+                'error': "No results found."
+            }
             return render(request, 'app/class_search.html', context)
 
     else:
-        context = { 'classes' : Class.objects.all(), 'error': "" }
+        context = {
+            'classes' : Class.objects.all(),
+            'user_classes': user_classes,
+            'error': ""
+        }
         return render(request, 'app/class_search.html', context)
 
 def add(request, class_id):
