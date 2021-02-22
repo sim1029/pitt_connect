@@ -27,7 +27,6 @@ def search(request):
     for i in request.user.profile.classes.split(','):
         if i:
             user_classes.append(int(i))
-    print(user_classes)
 
     if request.method == "POST":
         # empty search
