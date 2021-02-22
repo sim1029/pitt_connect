@@ -116,6 +116,7 @@ def login(request):
         # user.save()
 
         user = authenticate(
+            request,
             username=request.POST['username'],
             password=request.POST['password'],
         )
@@ -124,12 +125,12 @@ def login(request):
             return redirect('index')
         else:
             context = {
-                'errors' : True,
+                'error' : True,
             }
             return render(request, 'app/login.html', context)
     else:
         context = {
-            'errors' : False,
+            'error' : False,
         }
         return render(request, 'app/login.html', context)
 
@@ -231,6 +232,8 @@ def create(request):
         tophat = request.POST['tophatLink']
         canvas = request.POST['canvasLink']
         gradescope = request.POST['gradescopeLink']
+        box = request.POST['boxLink']
+        website = request.POST['websiteLink']
 
         new_class = Class(
             department=department,
@@ -252,6 +255,8 @@ def create(request):
             tophat=tophat,
             canvas=canvas,
             gradescope=gradescope,
+            box=box,
+            website=website
         )
 
         new_class.save()

@@ -25,7 +25,7 @@
         {% csrf_token %}
         <div class="input-group mb-3">
           <label class="input-group-text text-danger" for="term">Term</label>
-          <select class="form-select" id="inputGroupSelect01" name="term">
+          <select class="form-select" id="inputGroupSelect01" name="term" required>
             <option selected>Select</option>
             <option value="Spring 2021">Spring 2021</option>
             <option value="Summer 2021">Summer 2021</option>
@@ -33,20 +33,20 @@
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text text-danger" id="inputGroup-sizing-default">Course Name</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="courseName">
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="courseName" required>
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text text-danger" id="inputGroup-sizing-default">Course # (Ex CS0001)</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="courseNum">
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="courseNum" required>
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text text-danger">Instructor</span>
-          <input type="text" aria-label="First name" placeholder="FirstName" class="form-control" name="firstName">
-          <input type="text" aria-label="Last name" placeholder="LastName" class="form-control" name="lastName">
+          <input type="text" aria-label="First name" placeholder="FirstName" class="form-control" name="firstName" required>
+          <input type="text" aria-label="Last name" placeholder="LastName" class="form-control" name="lastName" required>
         </div>
         <div class="input-group mb-3">
           <label class="input-group-text text-danger" for="days">Lecture Days</label>
-          <select class="form-select" id="inputGroupSelect01" name="lecDay1">
+          <select class="form-select" id="inputGroupSelect01" name="lecDay1" required>
             <option selected>Day 1</option>
             <option value="M">Monday</option>
             <option value="T">Tuesday</option>
@@ -73,9 +73,9 @@
         </div>
         <div class="container1 input-group mb-3">
           <span class="input-group-text text-danger" id="basic-addon3">Zoom Lecture Link</span>
-          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="lectureLink">
+          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="lectureLink" required>
           <span class="input-group-text text-danger" id="basic-addon3">Meeting Time (00:00 AM/PM)</span>
-          <input type="text" aria-label="Time" class="form-control" name="lectureTime">
+          <input type="text" aria-label="Time" class="form-control" name="lectureTime" required>
           <span class="input-group-text" id="basic-addon3">Password (optional)</span>
           <input type="text" aria-label="Time" class="form-control" name="lecPassword">
         </div>
@@ -155,7 +155,7 @@
         </div>
         <div class="container1 input-group mb-3">
           <span class="input-group-text" id="basic-addon3">Other Website</span>
-          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="otherLink">
+          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="websiteLink">
         </div>
         <div class="d-flex justify-content-center my-3"><button type="submit" class="btn btn-primary">Submit</button></div>
       </form>

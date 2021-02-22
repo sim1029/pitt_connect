@@ -157,13 +157,13 @@ a {
       </div>
       <div id="id01" class="modal">
         <form class="modal-content animate" action="{% url 'login' %}" method="post">
-          {% csrf_token %}
           <h1 style="display: flex; justify-content: center;">Pitt Connect</h1>
+          {% csrf_token %}
           <div class="imgcontainer">
             <img src="{% static 'Avatar.png' %}" alt="Avatar" class="avatar" style="width: 15%;">
           </div>
           {% if error %}
-            <p style="color: red">Your username and password didn't match. Please try again.</p>
+            <p style="color: red">Login failed. Try again.</p>
           {% endif %}
           <div class="container">
             <label for="uname"><b>Username</b></label>
