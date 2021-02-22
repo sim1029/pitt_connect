@@ -103,15 +103,15 @@ def add(request, class_id):
 def remove(request, class_id):
     if request.user.is_authenticated:
         classes = request.user.profile.classes
-        # don't duplicate a class in the user
+
         if str(class_id) in classes:
             # remove class
             new_classes = ""
             for c in classes.split(','):
                 if c != str(class_id):
                     new_classes += c + ','
-                # cut off trailing comma
 
+            # cut off trailing comma
             new_classes = new_classes[:-1]
             request.user.profile.classes = new_classes
             request.user.save()
