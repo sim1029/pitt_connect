@@ -3,7 +3,7 @@
 
 Pitt Connect serves as a hub for the various platforms utilized in online learning. Users can access and modify a personalized home screen that helps them find information about their classes.
 
-Try it at the [Pitt Connect Website](https://www.pitt-connect.com)!
+Try it at the [Pitt Connect Website](www.pitt-connect.com)!
 
 Home Screen
 ![](web1.png)
